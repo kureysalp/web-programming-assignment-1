@@ -8,14 +8,10 @@ server.listen(port, () => {
     console.log("Listening at " + port);
 })
 
-server.get("/json", (req, res) => {
-    res.json("Hello World");
-})
-
 server.get("/", (req, res) => {
     res.sendFile(__dirname + '/index.html');
 })
 
 server.get("/welcome", (req, res) => {
-    res.json("I, Alp, have read the syllabus we went through in the first class. ");    
+    res.json("I, Alp, have read the syllabus we went through in the first class. ");
 })
