@@ -1,9 +1,9 @@
 const express = require('express');
 const server = express();
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser') // To use "req.body". Nodejs body parser bundle removed July 2020.
 
 const port = 4000;
-server.use(bodyParser.urlencoded({ extended: false }))
+server.use(bodyParser.urlencoded({ extended: false }));
 
 //#region ITEM OBJECTS
 const item_1 = {
@@ -57,6 +57,7 @@ server.listen(port, () => {
     console.log("Listening at " + port);
 })
 
+// Homepage.
 server.get("/", (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 })
@@ -74,24 +75,28 @@ server.get("/login", (req, res) => {
     res.sendFile(__dirname + '/public/form.html');
 })
 
-server.post("/check_login", (req, res) => {    
+server.post("/check_login", (req, res) => {
+    // Get user data by form from body.
     const username = req.body.username;
     const password = req.body.password;
 
     console.log(username ,"tried to login with password", password);
 
+    // Iterating every user to check informations.
     for (var i = 0; i < users.length; i++)
     {
+        // Redirect the user and break the loop if login was successful.
         if(users[i].username == username && users[i].password == password)
         {
             res.redirect("/auth");
             break;
         }
         else
-            res.redirect("/login");
+            res.redirect("/login"); // Redicert user back to the login if login was unsuccesfull.
     }
 })
 
+// Success login page.
 server.get("/auth", (req, res) => {
     res.sendFile(__dirname + '/public/auth.html');
 })
