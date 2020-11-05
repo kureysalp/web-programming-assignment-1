@@ -1,0 +1,38 @@
+{
+    "products": [{
+        "id": 0,
+        "name": "Item 1",
+        "price": 40,
+        "description": "First item of this application."
+    },
+    {
+        "id": 1,
+        "name": "Item 2",
+        "price": 50,
+        "description": "Second item of this application."
+    },
+    {
+        "id": 2,
+        "name": "Item 3",
+        "price": 10,
+        "description": "Third item of this application."
+    },
+    {
+        "id": 3,
+        "name": "Item 4",
+        "price": 80,
+        "description": "Fourth item of this application."
+    },
+    {
+        "id": 4,
+        "name": "Item 5",
+        "price": 150,
+        "description": "Fifth item of this application."
+    },
+    {
+        "id": 5,
+        "name": "Item 6",
+        "price": 150,
+        "description": "Sixth item of this application."
+    }]       
+}
