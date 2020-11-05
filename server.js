@@ -25,7 +25,7 @@ server.get("/welcome", (req, res) => {
 })
 
 // PRODUCT LIST
-server.get("/get_products", (req, res) => {
+server.get("/products", (req, res) => {
     fs.readFile(__dirname + '/public/products.json', 'utf8', (err, data) => {
         if(err)
             console.log(err);
@@ -61,7 +61,7 @@ server.get("/getItem/:input", (req, res) => {
             "Description: " + jsonData.description + "<br>";
             var productsData = "<!DOCTYPE html><head><title>Web Programming Assingment 1</title></head><body>"+
             productData + 
-            "<p><a href='/get_products'>Products</a></p></body></html>";
+            "<p><a href='/products'>Products</a></p></body></html>";
 
             res.send(productsData);
         }
@@ -107,6 +107,7 @@ server.get("/register", (req, res) => {
     res.sendFile(__dirname + '/public/register.html')
 })
 
+// REGISTER
 server.post("/register_user", (req, res) => {
     const _username = req.body.username;
     const _password = req.body.password;
@@ -130,17 +131,18 @@ server.post("/register_user", (req, res) => {
                 if(jsonData.users[i].username == _username)
                     return res.redirect("/register") // Redirect user to success page.                                
             }
+
             jsonData.users.push({username: _username, password: _password}); // Add new user to the json.
-                    var jsonString = JSON.stringify(jsonData); // Convert json to string to write it to the file.
+            var jsonString = JSON.stringify(jsonData); // Convert json to string to write it to the file.
         
-                    // Write file with new user informations
-                    fs.writeFile('public/user_credentials.json', jsonString, 'utf8', (err) => {                
-                        if(!err)
-                        {
-                            console.log("Register success.");
-                            return res.redirect('/login');
-                        }
-                    });
+            // Write file with new user informations
+            fs.writeFile('public/user_credentials.json', jsonString, 'utf8', (err) => {                
+                if(!err)
+                {
+                    console.log("Register success.");
+                    return res.redirect('/login');
+                }
+            });
         }                                
     });
 })
